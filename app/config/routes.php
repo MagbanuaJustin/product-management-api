@@ -51,13 +51,13 @@ $router->get('/student/profile', 'StudentController::profile')->middleware('stud
 
 $router->get('/users', 'UsersController::index');
 
-$router->options('/api/products', 'ProductController::index');
-$router->options('/api/products/{id}', 'ProductController::show')->where_number('id');
-$router->get('/api/products', 'ProductController::index');
-$router->get('/api/products/{id}', 'ProductController::show')->where_number('id');
-$router->post('/api/products', 'ProductController::store');
-$router->put('/api/products/{id}', 'ProductController::update')->where_number('id');
-$router->delete('/api/products/{id}', 'ProductController::delete')->where_number('id');
+$router->options('/api/products', 'ProductController::index')->middleware('auth');
+$router->options('/api/products/{id}', 'ProductController::show')->where_number('id')->middleware('auth');
+$router->get('/api/products', 'ProductController::index')->middleware('auth');
+$router->get('/api/products/{id}', 'ProductController::show')->where_number('id')->middleware('auth');
+$router->post('/api/products', 'ProductController::store')->middleware('auth');
+$router->put('/api/products/{id}', 'ProductController::update')->where_number('id')->middleware('auth');
+$router->delete('/api/products/{id}', 'ProductController::delete')->where_number('id')->middleware('auth');
 
 $router->options('/api/login', 'AuthController::login');
 $router->post('/api/login', 'AuthController::login');

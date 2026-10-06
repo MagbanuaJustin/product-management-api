@@ -16,13 +16,13 @@ class ProductController extends Controller {
     }
 
     public function index(){
-        $this->api->require_jwt();
+        // $this->api->require_jwt();
         $products = $this->ProductModel->getAll();
         return $this->api->respond($products);
     }
 
     public function show($id){
-        $this->api->require_jwt();
+        // $this->api->require_jwt();
         $product = $this->ProductModel->getById($id);
         if(!$product){
             return $this->api->respond_error('Product not found', 404);
@@ -31,7 +31,7 @@ class ProductController extends Controller {
     }
 
     public function store(){
-        $this->api->require_jwt();
+        // $this->api->require_jwt();
         $body = $this->api->body();
         $data = [
             'product_name' => $body['product_name'] ?? '',
@@ -48,7 +48,7 @@ class ProductController extends Controller {
     }
 
     public function update($id){
-        $this->api->require_jwt();
+        // $this->api->require_jwt();
         $product = $this->ProductModel->getById($id);
 
         if (!$product) {
@@ -70,7 +70,7 @@ class ProductController extends Controller {
     }
 
     public function delete($id){
-        $this->api->require_jwt();
+        // $this->api->require_jwt();
         $product = $this->ProductModel->getById($id);
 
         if (!$product) {
